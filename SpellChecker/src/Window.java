@@ -15,6 +15,7 @@ public class Window extends JFrame {
     private final Colors colors = new Colors();
     private final TextArea Area1 = new TextArea();
     private final Area2Updater Area2 = new Area2Updater();
+    private final Area3Updater Area3 = new Area3Updater();
     private final JPanel mainPanel = new JPanel();
     private final JButton Check = new JButton("Check");
     public Window(boolean isVisible)
@@ -30,6 +31,7 @@ public class Window extends JFrame {
         SwingUtilities.invokeLater(()->{
             addTextArea$1(mainPanel);
             addTextArea$2(mainPanel);
+            addTextArea$3(mainPanel);
             addCheckButton(mainPanel);
             ListenerForChecker(Check,Area1);
             Thread CheckResult = new Thread(new Runnable() {
@@ -44,6 +46,13 @@ public class Window extends JFrame {
                             if(server.CorrectedStringData!=null)
                             {
                                 Area2.TxtArea2.setText(server.CorrectedStringData);
+                                if(!String.valueOf(server.result).equals(null))
+                                {
+                                    Area3.TxtArea3.setText(server.result.toString());
+                                }
+                                else{
+                                    Area3.TxtArea3.setText("NO MISTAKES FOUND !!");
+                                }
                                 server.GateWayControl.shutdown();
                                 running = false;
                             }
@@ -165,6 +174,18 @@ public class Window extends JFrame {
         panel.add(Area2.TxtArea2);
         panel.add(Output);
     }
+    private void addTextArea$3(JPanel panel)
+    {
+        JLabel Mistakes = new JLabel("Mistakes : ");
+        Mistakes.setBounds(50,220,150,25);
+        Mistakes.setFont(new Font("Calibri",Font.BOLD,25));
+        Area3.TxtArea3.setSize(400,100);
+        Area3.TxtArea3.setLocation(50,250);
+        Area3.TxtArea3.setFont(new Font("Calibri",Font.BOLD,20));
+        panel.add(Area3.TxtArea3);
+        panel.add(Mistakes);
+    }
+
     private void addCheckButton(JPanel panel)
     {
         Check.setSize(100,30);

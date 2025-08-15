@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class server{
     Area2Updater area2Updater = new Area2Updater();
+    Area3Updater area3Updater = new Area3Updater();
     public String CorrectedStringData =null;
     public static String StringData=null;
     public boolean resultChanged = false;
@@ -16,6 +17,7 @@ public class server{
     public void showRes()
     {
         System.out.println("RESULT : "+result);
+        area3Updater.setText$Area3(result.toString());
     }
     public void getStringData(String string)
     {
