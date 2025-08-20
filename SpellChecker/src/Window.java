@@ -1,13 +1,12 @@
 
+import Addons.Colors;
 import py4j.GatewayServer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 
 
 public class Window extends JFrame {
@@ -199,6 +198,12 @@ public class Window extends JFrame {
     private void ListenerForChecker(JButton button,TextArea textArea)
     {
         button.addActionListener(e->{
+            ProcessBuilder processBuilder = new ProcessBuilder("python","C:\\Users\\Soham Khair\\Downloads\\Java-Python-Spelling-Checker-main\\Java-Python-Spelling-Checker-main\\SpellChecker\\src\\ex.py","RUNNING");
+            try {
+                processBuilder.start();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             StringSetter(textArea);
         });
     }
